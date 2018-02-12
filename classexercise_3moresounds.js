@@ -11,6 +11,10 @@ function preload() {
 function setup() { 
   mySound.setVolume(0.5);
   mySound.play();
+	mySound2.setVolume(0.8);
+  mySound2.play();
+	mySound3.setVolume(0.3);
+  mySound3.play();
   createCanvas(100, 100);
 }
 
