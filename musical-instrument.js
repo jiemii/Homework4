@@ -1,5 +1,3 @@
-// Incorporating the soothing sounds of nature
-
 var freqA = 174;
 var freqS = 196;
 var freqD = 220;
@@ -14,44 +12,44 @@ var playingA, playingS, playingD, playingF, playingQ, playingW;
 var playing = false;
 
 function preload() {
-	rain = loadSound('assets/rain.mp3');
-  ocean = loadSound('assets/ocean.mp3')
-  }
+  bird = loadSound('assets/bird.mp3');
+  instrument = loadSound('assets/instrument.mp3')
+}
 
 function setup() {
   backgroundColor = color(10, 10, 15);
   textAlign(CENTER);
-  
+
   oscA = new p5.Oscillator();
   oscA.setType('sine');
   oscA.freq(freqA);
   oscA.amp(0);
   oscA.start();
-  
+
   oscS = new p5.Oscillator();
   oscS.setType('sine');
   oscS.freq(freqS);
   oscS.amp(0);
   oscS.start();
-  
+
   oscD = new p5.Oscillator();
   oscD.setType('sine');
   oscD.freq(freqD);
   oscD.amp(0);
   oscD.start();
-  
+
   oscF = new p5.Oscillator();
   oscF.setType('sine');
   oscF.freq(freqF);
   oscF.amp(0);
   oscF.start();
-  
+
   oscQ = new p5.Oscillator();
   oscQ.setType('sine');
   oscQ.freq(freqQ);
   oscQ.amp(0);
   oscQ.start();
-  
+
   oscW = new p5.Oscillator();
   oscW.setType('sine');
   oscW.freq(freqW);
@@ -61,10 +59,10 @@ function setup() {
 
 function draw() {
   if (playing) {
-background(0, 255, 255);
-	  } else {
-	    background(255, 0, 255);
-	  }
+    background(0, 255, 255);
+  } else {
+    background(255, 0, 255);
+  }
 }
 
 
@@ -73,8 +71,6 @@ function keyPressed() {
   var osc;
   if (key == 'A') {
     osc = oscA;
-    rain.play();
-    rain.setVolume(0.1);
     playingA = true;
   } else if (key == 'S') {
     osc = oscS;
@@ -86,12 +82,15 @@ function keyPressed() {
     osc = oscF;
     playingF = true;
   } else if (key == 'Q') {
-    osc = oscQ;
-    playingQ = true; 
+    osc = oscW;
+    bird.play();
+    bird.setVolume(0.3);
+    playingF = true;
+
   } else if (key == 'W') {
     osc = oscW;
-    ocean.play();
-    ocean.setVolume(0.1);
+    instrument.play();
+    instrument.setVolume(0.2);
     playingW = true;
   }
   if (osc) {
@@ -123,43 +122,43 @@ function keyReleased() {
     playingW = false;
   }
   if (osc) {
-    osc.amp(0, 0.5);
-    playingA = false, playingS = false, playingD = false, playingF = false
-    playingQ = false, playingW = false;
+    osc.amp(0, 0.8);
+    playingA = false, playingS = false, playingD = false,
+      playingF = false, playingQ = false, playingW = false;
   }
 }
 
 function draw() {
-	  background(10);
-	  colorMode(RGB);
-	  if (playingA) {
-	    fill(80);
-	    noStroke();
-	    ellipse(30, 30, 15, 15);
-	  }
-	  if (playingS) {
-	    fill(70);
-	    noStroke();
-	    ellipse(25, 25, 12, 12);
-	  }
-	  if (playingD) {
-	    fill(60);
-	    noStroke();
-	    ellipse(20, 20, 10, 10);
-	  }
-	  if (playingF) {
-	    fill(40);
-	    noStroke();
-	    ellipse(15, 15, 7, 7);
-	  }
- 	 if (playingQ) {
-	    fill(30);
-	    noStroke();
-	    ellipse(15, 15, 4, 4);
+  background(255);
+  colorMode(RGB);
+  if (playingA) {
+    fill(100, 255, 0);
+    noStroke();
+    rect(0, 0, 50, 50);
   }
-   	 if (playingW) {
-	    fill(30);
-	    noStroke();
-	    ellipse(10, 10, 5, 5);
+  if (playingS) {
+    fill(150, 50, 255);
+    noStroke();
+    rect(50, 50, 50, 50);
   }
-	}
+  if (playingD) {
+    fill(0, 255, 255);
+    noStroke();
+    rect(50, 0, 50, 50);
+  }
+  if (playingF) {
+    fill(255, 0, 255);
+    noStroke();
+    rect(0, 50, 50, 50);
+  }
+  if (playingQ) {
+    fill(0, 0, 255);
+    noStroke();
+    rect(0, 0, width, height);
+  }
+  if (playingW) {
+    fill(50, 150, 255);
+    noStroke();
+    rect(0, 0, width, height);
+  }
+}
